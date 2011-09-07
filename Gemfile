@@ -29,3 +29,5 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'devise', '1.4.4'
+
