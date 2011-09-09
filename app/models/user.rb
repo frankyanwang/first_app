@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  
+  has_many :followships
+  has_many :followers, :through => :followships
+  
+  has_many :inverse_followships, :class_name => "Followship", :foreign_key => "follower_id"
+  has_many :followings, :through => :inverse_followships, :source => :user
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,7 +17,10 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :login
   
   attr_accessor :login
-
+  
+  # Used for storing followship to identify if user is "follow" already or not by current user. Then "unfollow". 
+  attr_accessor :is_being_followed
+  
   protected
   
   #override for login.

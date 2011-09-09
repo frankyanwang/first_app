@@ -1,0 +1,41 @@
+<% title "User" %>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+<p>
+  <strong>Avatar:</strong>
+  <%= @user.avatar %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_user_path(@user) %> |
+</p>
+
+<h2>Following</h2>
+<ul>
+  <% for followship in @user.followships %>
+    <li>
+      <%=h followship.follower.username %>
+      (<%= link_to "unfollow", followship, :method => :delete %>)
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Find Friends", users_path %></p>
+
+<h2>Follower</h2>
+<ul>
+  <% for user in @user.followings %>
+    <li><%=h user.username %></li>
+  <% end %>
+</ul>
