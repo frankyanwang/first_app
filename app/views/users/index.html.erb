@@ -4,17 +4,17 @@
   <tr>
     <th>Email</th>
     <th>Username</th>
+    <th>Follow</th>
   </tr>
   <% for user in @users %>
 	<tr>
 		<td><%= user.email %></td>
-		<td><%= user.username %></td>
+		<td><%= link_to user.username, profile_path(:id => user.id) %></td>
 		<% if user.is_being_followed %>
 			<td><%= link_to "unfollow", user.is_being_followed, :method => :delete %></td>
 		<% else %>
 			<td><%= link_to "follow", followships_path(:follower_id => user.id), :method => :post %></td>	
 		<% end %>
-		<td><%= link_to "Show", user %></td>
 	</tr>		
   <% end %>
 </table>

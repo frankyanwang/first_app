@@ -2,8 +2,8 @@ FirstApp::Application.routes.draw do
   resources :followships
 
   devise_for :users, :path_names => {:sign_up => "register"}
-  match "profile" => "users#profile"
-  resources :users, :except => [:new, :create, :destroy]
+  match "profile" => "users#show"
+  match "list"    => "users#index"
   
   resources :contacts
 

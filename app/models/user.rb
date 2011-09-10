@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :inverse_followships, :class_name => "Followship", :foreign_key => "follower_id"
   has_many :followings, :through => :inverse_followships, :source => :user
   
+  ROLE_TYPE = { 1 => :admin, 0 => :regular }
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,11 +18,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :login
   
+  # warn: dont want to set accessible for attr_accessible :role
+  
   attr_accessor :login
+  
+  def is_role? role
+    User::ROLE_TYPE[self.role] == role.to_sym.downcase
+  end
   
   # Used for storing followship to identify if user is "follow" already or not by current user. Then "unfollow". 
   attr_accessor :is_being_followed
-  
+
   protected
   
   #override for login.

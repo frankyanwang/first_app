@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class ContactsController < AuthorizedController
   before_filter :authenticate_user!
   # GET /contacts
   # GET /contacts.json
@@ -42,7 +42,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(params[:contact])
-
+    #authorize! :create, @contact
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, :notice => 'Contact was successfully created.' }

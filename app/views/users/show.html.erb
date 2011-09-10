@@ -18,7 +18,7 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_user_path(@user) %> |
+  <%= link_to "Edit", edit_user_registration_path(@user) %>
 </p>
 
 <h2>Following</h2>
@@ -31,7 +31,7 @@
   <% end %>
 </ul>
 
-<p><%= link_to "Find Friends", users_path %></p>
+<p><%= link_to "Find Friends", list_path %></p>
 
 <h2>Follower</h2>
 <ul>

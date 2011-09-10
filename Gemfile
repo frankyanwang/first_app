@@ -34,3 +34,5 @@ gem 'devise', '1.4.4'
 gem "nifty-generators", :group => :development
 
 gem "mocha", :group => :test
+
+gem "cancan", '1.6.5'

@@ -1,8 +1,10 @@
 class FollowshipsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     @followship = current_user.followships.build(:follower_id => params[:follower_id])
     if @followship.save
-      flash[:notice] = "You are following " + current_user.followers.find(params[:follower_id]).username
+      flash[:notice] = "You start following '#{@followship.follower.username}'."
       redirect_to root_url
     else
       flash[:error] = "unable to follow."
@@ -13,6 +15,6 @@ class FollowshipsController < ApplicationController
   def destroy
     @followship = current_user.followships.find(params[:id])
     @followship.destroy
-    redirect_to root_url, :notice => "Not follwing anymore."
+    redirect_to root_url, :notice => "You stop following '#{@followship.follower.username}' anymore."
   end
 end
