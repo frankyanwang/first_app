@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :avatar, :remote_avatar_url
   
+  mount_uploader :avatar, AvatarUploader
   # warn: dont want to set accessible for attr_accessible :role
   
   attr_accessor :login

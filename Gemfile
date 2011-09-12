@@ -36,3 +36,6 @@ gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
 
 gem "cancan", '1.6.5'
+
+gem 'rmagick' #we should use latest one, but this one should work '2.13.1'
+gem 'carrierwave' #'0.5.1'

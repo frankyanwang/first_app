@@ -13,8 +13,8 @@
   <%= @user.phone %>
 </p>
 <p>
-  <strong>Avatar:</strong>
-  <%= @user.avatar %>
+  <strong>Avatar:</strong><br />
+  <%= image_tag @user.avatar_url(:thumb).to_s%>
 </p>
 
 <p>
