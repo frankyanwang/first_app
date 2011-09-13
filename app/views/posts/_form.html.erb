@@ -1,0 +1,24 @@
+<%= form_for @post do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </p>
+  <p>
+    <%= f.label :trade %><br />
+    <%= f.text_field :trade %>
+  </p>
+  <p>
+    <%= f.label :cash %><br />
+    <%= f.number_field :cash %>
+  </p>
+
+  <p><%= f.label :image%><br /><%= f.file_field :image %></p>
+  <p><%= f.label :image%><br /><%= f.file_field :image %></p>
+
+  <p><%= f.submit %></p>
+<% end %>

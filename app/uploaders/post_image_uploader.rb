@@ -1,11 +1,11 @@
-class AvatarUploader < ImageUploader
+class PostImageUploader < ImageUploader
 
   # Process files as they are uploaded:
   process :resize_to_fit => [600, 600]
   
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [150, 150]
+  version :iphone do
+    process :resize_to_fit => [400, 400]
   end  
 
 end

@@ -1,0 +1,39 @@
+<% title "Post" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+<p>
+  <strong>Trade:</strong>
+  <%= @post.trade %>
+</p>
+<p>
+  <strong>Cash:</strong>
+  <%= @post.cash %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @post.user.username %>
+</p>
+<p>
+  <strong>Image:</strong><br />	
+  <% if !@images.blank? %>
+    <% for image in @images %>
+		<%= image_tag image.image_url(:iphone).to_s%>      
+    <% end %>
+  <% else %>
+    
+  <% end %>
+</p>
+
+
+<p>
+  <%= link_to "Edit", edit_post_path(@post) %> |
+  <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", posts_path %>
+</p>

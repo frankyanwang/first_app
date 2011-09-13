@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :inverse_followships, :class_name => "Followship", :foreign_key => "follower_id"
   has_many :followings, :through => :inverse_followships, :source => :user
   
+  has_many :posts
+  
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
   # Include default devise modules. Others available are:

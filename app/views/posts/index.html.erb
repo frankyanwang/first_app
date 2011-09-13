@@ -1,0 +1,25 @@
+<% title "Posts" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Trade</th>
+    <th>Cash</th>
+    <th>User</th>
+  </tr>
+  <% for post in @posts %>
+    <tr>
+      <td><%= post.name %></td>
+      <td><%= post.content %></td>
+      <td><%= post.trade %></td>
+      <td><%= post.cash %></td>
+      <td><%= post.user_id %></td>
+      <td><%= link_to "Show", post %></td>
+      <td><%= link_to "Edit", edit_post_path(post) %></td>
+      <td><%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Post", new_post_path %></p>

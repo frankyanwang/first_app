@@ -1,4 +1,6 @@
 FirstApp::Application.routes.draw do
+  resources :posts
+
   resources :followships
 
   devise_for :users, :path_names => {:sign_up => "register"}

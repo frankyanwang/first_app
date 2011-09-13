@@ -1,0 +1,13 @@
+one:
+  name: MyString
+  content: MyString
+  trade: MyString
+  cash: 1
+  user_id: 1
+
+two:
+  name: MyString
+  content: MyString
+  trade: MyString
+  cash: 1
+  user_id: 1
