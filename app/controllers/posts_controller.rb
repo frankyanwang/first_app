@@ -48,6 +48,22 @@ class PostsController < ApplicationController
   
   protected
   
+  #TODO support multi image upload. Not sure how we want to support yet.
+  # def attach_images(post, image_form)
+  #   # if(image_form)
+  #   #   @images = post.post_images.build(:image => image_form)
+  #   #   @images.save
+  #   # end
+  #   
+  # end
+  # 
+  # def reattach_images(post, image_form)
+  #   # if(image_form)
+  #   #   PostImage.destroy post.post_images.collect(&:id)
+  #   #   attach_image post, image_form
+  #   # end
+  # end
+    
   def attach_image(post, image_form)
     if(image_form)
       @image = post.post_images.build(:image => image_form)

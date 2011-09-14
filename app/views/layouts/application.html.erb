@@ -11,13 +11,13 @@
 <body>
 	<div id="user_nav">
 		<% if user_signed_in? %>
-			Signed in as <%= current_user.username %>.(<%= link_to "Profile", profile_path(:id => current_user.id)%>) Not you?
+			Signed in as <%= current_user.username %>.<%= image_tag current_user.avatar_url(:thumbnail).to_s%>(<%= link_to "Profile", profile_path(:id => current_user.id)%>) Not you?
 			<%= link_to "Signout", destroy_user_session_path, :method => "delete" %>
 		<% else %>
 			<%= link_to "Sign Up", new_user_registration_path %> or
 			<%= link_to "Signin", new_user_session_path %>
 		<% end %>
-	</div><br />
+	</div><br /><br />
 	<!-- <p id="notice"><%= notice %></p>
 	<p id="alert"><%= alert %></p>	 -->
     <div id="container">

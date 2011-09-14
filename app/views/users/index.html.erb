@@ -4,12 +4,14 @@
   <tr>
     <th>Email</th>
     <th>Username</th>
+    <th>Avatar</th>
     <th>Follow</th>
   </tr>
   <% for user in @users %>
 	<tr>
 		<td><%= user.email %></td>
 		<td><%= link_to user.username, profile_path(:id => user.id) %></td>
+		<td><%= image_tag user.avatar_url(:thumbnail).to_s%></td>
 		<% if user.is_being_followed %>
 			<td><%= link_to "unfollow", user.is_being_followed, :method => :delete %></td>
 		<% else %>

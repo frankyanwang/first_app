@@ -14,7 +14,7 @@
       <td><%= post.content %></td>
       <td><%= post.trade %></td>
       <td><%= post.cash %></td>
-      <td><%= post.user_id %></td>
+      <td><%= link_to post.user.username, profile_path(:id => post.user.id) %></td>
       <td><%= link_to "Show", post %></td>
       <td><%= link_to "Edit", edit_post_path(post) %></td>
       <td><%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %></td>
