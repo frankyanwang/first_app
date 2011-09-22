@@ -1,0 +1,13 @@
+one:
+  post_id: 1
+  trade_post_id: 1
+  propose: MyString
+  status: 1
+  cash: 9.99
+
+two:
+  post_id: 1
+  trade_post_id: 1
+  propose: MyString
+  status: 1
+  cash: 9.99

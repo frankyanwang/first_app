@@ -1,5 +1,8 @@
 FirstApp::Application.routes.draw do
+  resources :proposals
+
   resources :posts
+  match "myposts" => "posts#myposts"
 
   resources :followships
 

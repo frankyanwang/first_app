@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913062748) do
+ActiveRecord::Schema.define(:version => 20110916063204) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(:version => 20110913062748) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "proposals", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "trade_post_id"
+    t.integer  "user_id"
+    t.string   "propose"
+    t.integer  "status"
+    t.decimal  "price",         :precision => 8, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proposals", ["post_id", "trade_post_id"], :name => "index_proposal_on_post_id_trade_post_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

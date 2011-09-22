@@ -1,0 +1,28 @@
+<% title "Proposal" %>
+
+<p>
+  <strong>Post:</strong>
+  <%= @proposal.post_id %>
+</p>
+<p>
+  <strong>Trade Post:</strong>
+  <%= @proposal.trade_post_id %>
+</p>
+<p>
+  <strong>Propose:</strong>
+  <%= @proposal.propose %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @proposal.status %>
+</p>
+<p>
+  <strong>Cash:</strong>
+  <%= @proposal.price %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_proposal_path(@proposal) %> |
+  <%= link_to "Destroy", @proposal, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", proposals_path %>
+</p>

@@ -2,11 +2,11 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th>Trade</th>
-    <th>Cash</th>
-    <th>User</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Trade for</th>
+    <th>or Price</th>
+    <th>Owner</th>
   </tr>
   <% for post in @posts %>
     <tr>
@@ -14,10 +14,20 @@
       <td><%= post.content %></td>
       <td><%= post.trade %></td>
       <td><%= post.cash %></td>
-      <td><%= link_to post.user.username, profile_path(:id => post.user.id) %></td>
+      <td><%= link_to post.user == current_user ? 'Me' : post.user.username, profile_path(:id => post.user.id) %></td>
       <td><%= link_to "Show", post %></td>
-      <td><%= link_to "Edit", edit_post_path(post) %></td>
+      <% if post.user == current_user %>
+	  <td><%= link_to "Edit", edit_post_path(post) %></td>
       <td><%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% else%>
+	  <td>Edit</td>
+      <td>Destroy</td>
+	  <% end %>
+	  <% if post.user != current_user %>
+	  <td><a href="void:javascript" class="open_dialog" post_id = "<%= post.id%>">Propose</a></td>
+	  <% else %>
+	  <td>Propose</td>
+	  <% end %>
     </tr>
   <% end %>
 </table>

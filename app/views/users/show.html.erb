@@ -18,14 +18,14 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_user_registration_path(@user) %>
+  <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 </p>
 
 <h2>Following</h2>
 <ul>
   <% for followship in @user.followships %>
     <li>
-      <%=h followship.follower.username %>
+      <%= link_to followship.follower.username, profile_path(:id => followship.follower) %>
       (<%= link_to "unfollow", followship, :method => :delete %>)
     </li>
   <% end %>
@@ -36,6 +36,6 @@
 <h2>Follower</h2>
 <ul>
   <% for user in @user.followings %>
-    <li><%=h user.username %></li>
+    <li><%= link_to user.username, profile_path(:id => user) %></li>
   <% end %>
 </ul>

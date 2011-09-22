@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :followings, :through => :inverse_followships, :source => :user
   
   has_many :posts
+  has_many :proposals
   
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   

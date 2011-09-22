@@ -1,0 +1,22 @@
+<%= form_for @proposal do |f| %>
+  <%= f.error_messages %>
+  <!-- <p>
+    <%#= f.label :post_id %><br />
+    <%#= f.number_field :post_id %>
+  </p>
+  <p>
+    <%#= f.label :trade_post_id %><br />
+    <%#= f.number_field :trade_post_id %>
+  </p> -->
+	<%= f.hidden_field :post_id %>
+	<%= f.hidden_field :trade_post_id %>
+  <p>
+    <%= f.label :propose %><br />
+    <%= f.text_field :propose, :size => 50 %>
+  </p>
+  <p>
+    <%= f.label :add_cash_offer %><br />
+    <%= f.text_field :price, :size => 5 %> dollars
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
