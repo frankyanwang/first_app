@@ -25,8 +25,8 @@
 <ul>
   <% for followship in @user.followships %>
     <li>
-      <%= link_to followship.follower.username, profile_path(:id => followship.follower) %>
-      (<%= link_to "unfollow", followship, :method => :delete %>)
+      	<%= link_to followship.follower.email, profile_path(:id => followship.follower) %>
+      	(<%= link_to "unfollow", followship, :method => :delete %>)
     </li>
   <% end %>
 </ul>

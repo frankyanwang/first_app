@@ -16,6 +16,7 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = current_user.proposals.build(params[:proposal])
+    @proposal.status_type = :pending
     if @proposal.save
       redirect_to @proposal, :notice => "Successfully created proposal."
     else

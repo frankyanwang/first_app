@@ -8,7 +8,9 @@ class Post < ActiveRecord::Base
   has_many :inverse_proposals, :class_name => "Proposal", :foreign_key => "trade_post_id"
   has_many :origin_posts, :through => :inverse_proposals, :source => :post
     
-  attr_accessible :name, :content, :trade, :cash, :user_id, :status
+  attr_accessible :name, :content, :trade, :cash, :user_id, :status_type
+  
+  attr_accessor :status_type
   
   validates :name, :content, :trade, :presence => true
   
@@ -17,7 +19,15 @@ class Post < ActiveRecord::Base
   before_create :update_status
   
   def update_status
-    self.status = Post::STATUS[:available]
+    self.status_type = :available
   end
+  
+  def status_type
+    status_type = STATUS.key(status)
+  end
+  
+  def status_type=(value)
+    self.status = STATUS[value]
+  end  
   
 end

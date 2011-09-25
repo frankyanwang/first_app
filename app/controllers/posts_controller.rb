@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
   
+  #TODO only admin access
   def index
     @posts = Post.all
   end
@@ -16,6 +17,20 @@ class PostsController < ApplicationController
       format.json { render :json => @posts }
     end    
     # render :json => @posts
+  end
+    
+  def feed_posts_timeline
+    user_follower = current_user.followers
+    user_followers_include_current_user_array = user_follower.collect {|f| f.id} << current_user.id
+        
+    @feed_posts = Post.includes(:post_images)
+                      .where(:user_id => user_followers_include_current_user_array) #all following user and current user.
+                      .order("created_at DESC") # order by creation time.
+                      .limit(params["limit"] ? params["limit"].to_i : 2) #default 20
+                      .offset(params["offset"] ? params["offset"].to_i : 0) #default 0 offset, meaning get latest.
+    
+    render :feed_posts_timeline, :layout => params[:layout] == "false" ? false : true
+    # render :xml => @feed_posts
   end
 
   def show

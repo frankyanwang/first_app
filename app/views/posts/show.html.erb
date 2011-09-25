@@ -17,6 +17,10 @@
   <%= @post.cash %>
 </p>
 <p>
+  <strong>Status</strong>
+  <%= @post.status_type %>
+</p>
+<p>
   <strong>Owner:</strong>
   <%= @post.user.username %>
 </p>
@@ -36,5 +40,7 @@
   <%= link_to "Edit", edit_post_path(@post) %> |
   <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", posts_path %>
-  <a href="void:javascript" class="open_dialog" post_id = "<%= @post.id%>">Propose</a>
+  <% if @post.user != current_user %>
+	<a href="void:javascript" class="open_dialog" post_id = "<%= @post.id%>">Propose</a>
+  <% end %>
 </p>

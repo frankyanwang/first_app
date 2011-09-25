@@ -3,7 +3,9 @@ class Proposal < ActiveRecord::Base
   belongs_to :trade_post, :class_name => "Post"
   belongs_to :user
   
-  attr_accessible :post_id, :trade_post_id, :user_id, :propose, :status, :price
+  attr_accessible :post_id, :trade_post_id, :user_id, :propose, :status_type, :price
+  
+  attr_accessor :status_type
   
   #validates :propose, :presence => true
   validates :price, :numericality => true, :allow_nil => true
@@ -15,15 +17,16 @@ class Proposal < ActiveRecord::Base
   validates :post_id, :uniqueness => {:scope => :trade_post_id, :message => "You have been proposed already."}
   
   STATUS = { :pending => 0, :accept => 1, :rejecte => 2, :counter => 3, :expired =>4 }
+    
+  def status_type
+    status_type = STATUS.key(status)
+  end
   
-  #TODO maynot be needed.
-  before_create :update_status
+  def status_type=(value)
+    self.status = STATUS[value]
+  end 
   
   protected
-  
-  def update_status    
-    self.status = Proposal::STATUS[:pending]
-  end
   
   def validate_post_item_and_trade_post_item
     #no need to validate further.

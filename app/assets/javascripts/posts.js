@@ -5,6 +5,8 @@ SWAP_GURU.posts = SWAP_GURU.posts || {};
 (function($){
 	var $dialog;
 	var post_id, trade_post_id;
+	var ITEM_PER_PAGE = 2;
+	var page_offset = ITEM_PER_PAGE;
 	
 	function create_dialog_myposts(){
 		$dialog = $('<div></div>')
@@ -40,6 +42,25 @@ SWAP_GURU.posts = SWAP_GURU.posts || {};
 		});
 	}
 	
+	function load_more_posts(){
+		
+		$.get('/feed_timeline', {layout: "false", offset: page_offset}, function(data){
+			$('#time_line_post').append(data);
+			page_offset += ITEM_PER_PAGE;
+		});
+	}
+	
+	function create_loading_div(){
+		loading_div = $("<div id='loading_div' style='display:none'>Loading ..... </div>");
+		$('#container').append(loading_div);
+		
+	 	$('#loading_div').ajaxSend(function() {
+	        $(this).show();
+	    }).ajaxStop(function() {
+	        $(this).hide();
+	    });		
+	}
+	
 	// register live event -----------------
 	$('.propose').live('click', function(){
 		trade_post_id = $(this).attr('trade_post_id');
@@ -52,7 +73,14 @@ SWAP_GURU.posts = SWAP_GURU.posts || {};
 	// Initialization depending when DOM ready.		
 	$(document).ready(function(){
 		
-		create_dialog_myposts();	
+		create_dialog_myposts();
+		
+		create_loading_div();
+		$('#load_more').live('click', function(){
+			$(this).remove();
+			load_more_posts();
+		});
+		
 	});
 
 })(jQuery, SWAP_GURU.posts);
