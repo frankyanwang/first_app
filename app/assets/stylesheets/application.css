@@ -11,6 +11,7 @@ body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+  margin: 0px;
 }
 
 a img {
@@ -27,12 +28,74 @@ a {
   overflow: hidden;
 }
 
+#nav_section {
+    background: none repeat scroll 0 0 #5C9CCC;
+    border: 1px solid #4297D7;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 30px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#app_name{
+    font-size: 16px;
+    margin-left: 120px;
+    margin-top: 5px;
+	float: left;
+}
+
+#user_nav{
+    float: right;
+	margin-right: 150px;
+    position: relative;
+}
+
+#user_nav .thumbnail{
+    float: left;
+    margin-top: 3px;
+	margin-right: 5px;	
+}
+
+#user_nav .link{
+    color: #D8DFEA;
+    font-size: 11px;
+    line-height: 28px;
+    text-decoration: none;	
+	margin-right: 15px;
+}
+
+#menu_navi{
+    font-size: 13px;
+    margin-left: 200px;
+    margin-top: 5px;
+	float: left;
+}
+
+.navi_link{
+    height: 35px;
+    margin-right: 10px;
+    width: 100px;	
+}
+
+#nav_section a{
+    color: #D8DFEA;
+    text-decoration: none;	
+}
+
+#nav_section a:hover{
+	color: #FFF;
+	background-color: #5C9CCC;
+}
+
 #container {
   width: 75%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
-  border: solid 1px black;
+/*  border: solid 1px black;*/
   margin-top: 20px;
 }
 
@@ -81,8 +144,4 @@ a {
 
 .error_messages ul {
   margin: 0;
-}
-
-#user_nav {
-  float: right;
 }

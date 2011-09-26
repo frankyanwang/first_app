@@ -1,5 +1,6 @@
 <% title "User" %>
 
+<h3>User Profile:</h3>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -21,19 +22,19 @@
   <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 </p>
 
-<h2>Following</h2>
+<h3>Currently following:</h3>
 <ul>
   <% for followship in @user.followships %>
     <li>
-      	<%= link_to followship.follower.email, profile_path(:id => followship.follower) %>
-      	(<%= link_to "unfollow", followship, :method => :delete %>)
+      	<%= link_to followship.follower.username, profile_path(:id => followship.follower) %>
+		<% if current_user == @user %>
+      		(<%= link_to "unfollow", followship, :method => :delete %>)
+		<% end %>
     </li>
   <% end %>
 </ul>
 
-<p><%= link_to "Find Friends", list_path %></p>
-
-<h2>Follower</h2>
+<h3>Currently being followed:</h3>
 <ul>
   <% for user in @user.followings %>
     <li><%= link_to user.username, profile_path(:id => user) %></li>

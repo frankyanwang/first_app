@@ -10,15 +10,30 @@
   <%= yield(:head) %>
 </head>
 <body>
-	<div id="user_nav">
-		<% if user_signed_in? %>
-			Signed in as <%= current_user.username %>.<%= image_tag current_user.avatar_url(:thumbnail).to_s%>(<%= link_to "Profile", profile_path(:id => current_user.id)%>) Not you?
-			<%= link_to "Signout", destroy_user_session_path, :method => "delete" %>
-		<% else %>
-			<%= link_to "Sign Up", new_user_registration_path %> or
-			<%= link_to "Signin", new_user_session_path %>
-		<% end %>
-	</div><br /><br />
+	<div id="nav_section">
+		<div id="app_name">SwapGuru</div>
+     <% if user_signed_in? %>
+		<div id="menu_navi">
+			<span class="navi_link"><%= link_to "Feed", feed_timeline_path%></span>
+			<span class="navi_link"><%= link_to "Explore+", feed_timeline_path%></span>
+			<span class="navi_link"><%= link_to "Swap", new_post_path%></span>
+			<span class="navi_link"><%= link_to "News+", feed_timeline_path%></span>
+			<span class="navi_link"><%= link_to "Users", list_path%></span>
+			<span class="navi_link"><%= link_to "Posts", posts_path%></span>
+			<span class="navi_link"><%= link_to "Profile", profile_path(:id => current_user.id) %></span>
+		</div>
+	<% end %>
+		<div id="user_nav">
+			<% if user_signed_in? %>
+				<%= image_tag current_user.avatar_url(:thumbnail).to_s, :size=>"25x25", :class=>"thumbnail"%> 
+				<%= link_to current_user.username, profile_path(:id => current_user.id), :class=>"link"%> 
+				<%= link_to "Signout", destroy_user_session_path, :method => "delete", :class=>"link" %>
+			<% else %>
+				<%= link_to "Sign Up", new_user_registration_path, :class=>"link" %>
+				<%= link_to "Signin", new_user_session_path, :class=>"link" %>
+			<% end %>
+		</div>		
+	</div>
 	<!-- <p id="notice"><%= notice %></p>
 	<p id="alert"><%= alert %></p>	 -->
     <div id="container">
