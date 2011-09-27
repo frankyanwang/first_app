@@ -4,7 +4,8 @@ FirstApp::Application.routes.draw do
   resources :posts
   match "myposts" => "posts#myposts"
   match "feed_timeline" => "posts#feed_posts_timeline" 
-  resources :followships
+
+  resources :followships, :only => [:create, :destroy]
 
   devise_for :users, :path_names => {:sign_up => "register"}
   match "profile" => "users#show"

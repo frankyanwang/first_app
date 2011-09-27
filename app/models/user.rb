@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   end
   
   # Used for storing followship to identify if user is "follow" already or not by current user. Then "unfollow". 
-  attr_accessor :is_being_followed
+  # nil means this user is not following.
+  attr_accessor :being_followed_user_associate_followship_id
 
   protected
   

@@ -13,8 +13,8 @@
 		<td><%= user.email %></td>
 		<td><%= link_to user.username, profile_path(:id => user.id) %></td>
 		<td><%= image_tag user.avatar_url(:thumbnail).to_s%></td>
-		<% if user.is_being_followed %>
-			<td><%= link_to "unfollow", user.is_being_followed, :method => :delete %></td>
+		<% if user.being_followed_user_associate_followship_id %>
+			<td><%= link_to "unfollow", followship_path(:id => user.being_followed_user_associate_followship_id), :method => :delete %></td>
 		<% else %>
 			<td><%= link_to "follow", followships_path(:follower_id => user.id), :method => :post %></td>	
 		<% end %>
