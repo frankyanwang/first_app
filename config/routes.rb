@@ -1,6 +1,6 @@
 FirstApp::Application.routes.draw do
   resources :proposals
-
+  match "myproposals" => "proposals#myproposals"
   resources :posts
   match "myposts" => "posts#myposts"
   match "feed_timeline" => "posts#feed_posts_timeline" 

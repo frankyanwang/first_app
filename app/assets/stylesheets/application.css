@@ -30,7 +30,7 @@ a {
 
 #nav_section {
     background: none repeat scroll 0 0 #5C9CCC;
-    border: 1px solid #4297D7;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     color: #FFFFFF;
     font-weight: bold;
     height: 30px;
@@ -38,6 +38,7 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
+	min-width: 1078px;
 }
 
 #app_name{
@@ -69,7 +70,7 @@ a {
 
 #menu_navi{
     font-size: 13px;
-    margin-left: 200px;
+    margin-left: 90px;
     margin-top: 5px;
 	float: left;
 }

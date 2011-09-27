@@ -2,7 +2,16 @@ class ProposalsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @proposals = current_user.proposals
+    @proposals = Proposal.all
+  end
+  
+  def myproposals
+    my_proposals = current_user.proposals.includes(:post, :trade_post)
+    respond_to do |format|
+      # format.html { render "myproposals"}
+      format.html { render :partial => "myproposals", :locals => { :my_proposals => my_proposals }}
+      format.json { render :json => @proposals }
+    end    
   end
 
   def show

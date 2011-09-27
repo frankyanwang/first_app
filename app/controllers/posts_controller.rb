@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     user_follower = current_user.followers
     user_followers_include_current_user_array = user_follower.collect {|f| f.id} << current_user.id
         
-    @feed_posts = Post.includes(:post_images)
+    @feed_posts = Post.includes(:post_images) #eager load to reduce N+1 queries.
                       .where(:user_id => user_followers_include_current_user_array) #all following user and current user.
                       .order("created_at DESC") # order by creation time.
                       .limit(params["limit"] ? params["limit"].to_i : 2) #default 20

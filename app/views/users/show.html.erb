@@ -18,16 +18,18 @@
   <%= image_tag @user.avatar_url(:profile).to_s%>
 </p>
 
+<% if @is_current_user %>
 <p>
   <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 </p>
+<% end %>
 
 <h3>Currently following:</h3>
 <ul>
-  <% for followship in @user.followships %>
+  <% for followship in @user.followships.includes(:follower) %>
     <li>
       	<%= link_to followship.follower.username, profile_path(:id => followship.follower) %>
-		<% if current_user == @user %>
+		<% if @is_current_user %>
       		(<%= link_to "unfollow", followship, :method => :delete %>)
 		<% end %>
     </li>
@@ -40,3 +42,7 @@
     <li><%= link_to user.username, profile_path(:id => user) %></li>
   <% end %>
 </ul>
+
+<%# @proposals = Proposal.includes(:post, :trade_post).where(:user_id => current_user) %>
+<%#= render :partial => "proposals/myproposals"%>
+<%= render :partial => "proposals/myproposals", :locals => { :my_proposals => @user.proposals.includes(:post, :trade_post) }%>
