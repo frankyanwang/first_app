@@ -6,14 +6,14 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
   
-  # GET /myposts
-  # GET /myposts.json  
-  def myposts
+  # GET /my_posts
+  # GET /my_posts.json  
+  def my_posts
     @posts = current_user.posts
     # @post_wanted_id = params[:post_id]
     respond_to do |format|
-      # format.html { render "myposts"}
-      format.html { render :partial => "myposts"}
+      # format.html { render "my_posts"}
+      format.html { render :partial => "my_posts"}
       format.json { render :json => @posts }
     end    
     # render :json => @posts

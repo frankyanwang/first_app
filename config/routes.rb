@@ -1,8 +1,21 @@
 FirstApp::Application.routes.draw do
-  resources :proposals
-  match "myproposals" => "proposals#myproposals"
-  resources :posts
-  match "myposts" => "posts#myposts"
+  resources :proposals do
+    member do
+      post 'accept'
+      post 'reject'
+    end
+    collection do
+      get 'my_proposals'
+      get 'proposals_to_me'
+    end
+  end
+  
+  resources :posts do
+    collection do
+      get 'my_posts'
+    end
+  end
+  # match "myposts" => "posts#myposts"
   match "feed_timeline" => "posts#feed_posts_timeline" 
 
   resources :followships, :only => [:create, :destroy]

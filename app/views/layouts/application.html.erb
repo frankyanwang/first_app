@@ -15,11 +15,10 @@
      <% if user_signed_in? %>
 		<div id="menu_navi">
 			<span class="navi_link"><%= link_to "Feed", feed_timeline_path%></span>
-			<span class="navi_link"><%= link_to "Explore+", feed_timeline_path%></span>
+			<span class="navi_link"><%= link_to "Explore", posts_path%></span>
 			<span class="navi_link"><%= link_to "Swap", new_post_path%></span>
-			<span class="navi_link"><%= link_to "News+", feed_timeline_path%></span>
+			<span class="navi_link"><%= link_to "News", feed_timeline_path%></span>
 			<span class="navi_link"><%= link_to "Users", list_path%></span>
-			<span class="navi_link"><%= link_to "Posts", posts_path%></span>
 			<span class="navi_link"><%= link_to "Profile", profile_path(:id => current_user.id) %></span>
 		</div>
 	<% end %>

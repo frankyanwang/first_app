@@ -42,7 +42,3 @@
     <li><%= link_to user.username, profile_path(:id => user) %></li>
   <% end %>
 </ul>
-
-<%# @proposals = Proposal.includes(:post, :trade_post).where(:user_id => current_user) %>
-<%#= render :partial => "proposals/myproposals"%>
-<%= render :partial => "proposals/myproposals", :locals => { :my_proposals => @user.proposals.includes(:post, :trade_post) }%>

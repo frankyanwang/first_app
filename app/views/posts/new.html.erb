@@ -4,3 +4,9 @@
 <h3>Create new Post to Swap. </h3>
 
 <%= render 'form' %>
+
+<%= render :partial => "proposals/my_proposals", :locals => { :my_proposals => current_user.proposals.includes(:post, :trade_post).order("created_at DESC") }%>
+
+<hr />
+
+<%= render :partial => "proposals/proposals_to_me", :locals => { :proposals_to_me => Proposal.where(:post_id => current_user.posts).order("created_at DESC") }%>

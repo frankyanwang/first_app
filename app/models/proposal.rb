@@ -16,7 +16,7 @@ class Proposal < ActiveRecord::Base
   
   validates :post_id, :uniqueness => {:scope => :trade_post_id, :message => "You have been proposed already."}
   
-  STATUS = { :pending => 0, :accept => 1, :rejecte => 2, :counter => 3, :expired =>4 }
+  STATUS = { :pending => 0, :accept => 1, :reject => 2, :counter => 3, :expire =>4 }
     
   def status_type
     status_type = STATUS.key(status)

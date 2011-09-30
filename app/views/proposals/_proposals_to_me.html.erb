@@ -1,0 +1,44 @@
+<h3>Others proposed to me</h3>
+
+<% for proposal in proposals_to_me %>
+<%= proposal.id %>
+<p>
+  <strong>My Post:</strong>
+  <% if proposal.post %>
+	<%= link_to proposal.post.name, post_path(:id => proposal.post_id) %>
+  <% else %>
+	Not exist!
+  <% end %>
+</p>
+
+<p>
+  <strong>Trade Post:</strong>
+  <% if proposal.trade_post %>
+    <%= link_to proposal.trade_post.name, post_path(:id => proposal.trade_post_id) %>
+  <% else %>
+    Not exist!
+  <% end %>
+</p>
+<p>
+  <strong>Propose:</strong>
+  <%= proposal.propose %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= proposal.status_type %>
+</p>
+<p>
+  <strong>From:</strong>
+  <%= link_to proposal.user.username , profile_path(:id => proposal.user) %>
+<p>
+  <strong>Cash offer:</strong>
+  <%= proposal.price %>
+</p>
+
+<% if proposal.status_type == :pending %>
+	<%= button_to "accept", accept_proposal_path(:id => proposal.id) %>
+	<%= button_to "reject", reject_proposal_path(:id => proposal.id) %>
+<% elsif proposal.status_type == :accept %>
+<% end %>  
+<hr />
+<% end %>

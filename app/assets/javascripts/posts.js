@@ -20,13 +20,14 @@ SWAP_GURU.posts = SWAP_GURU.posts || {};
 				height: 530
 			});
 		
-		$('.open_dialog').click(function() {
+		$('.open_dialog').live('click', function() {
 	        post_id = $(this).attr('post_id');
-			$dialog.load(
-	            "/myposts", 
+			$.get(
+	            "/posts/my_posts", 
 	            {},
-	            function (responseText, textStatus, XMLHttpRequest) {
-	                $dialog.dialog('open');
+	            function (data) {
+	                $dialog.empty().append(data);
+					$dialog.dialog('open');
 	            }
 	        );
 			// prevent the default action, e.g., following a link

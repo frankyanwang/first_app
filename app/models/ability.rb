@@ -10,11 +10,11 @@ class Ability
           can :manage, :all
       else
         puts "user role #{user.role}"
-        can :manage, :all
-        # can :read, User
-        # can :update, User do |someuser|
-        #   someuser == user
-        # end
+        #can :manage, :all
+        can :read, :all
+        can :update, :all do |someuser|
+          someuser == user
+        end
       end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
