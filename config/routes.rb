@@ -15,7 +15,7 @@ FirstApp::Application.routes.draw do
       get 'my_posts'
     end
   end
-  # match "myposts" => "posts#myposts"
+  
   match "feed_timeline" => "posts#feed_posts_timeline" 
 
   resources :followships, :only => [:create, :destroy]
