@@ -29,7 +29,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-gem 'devise', '1.4.4'
+gem 'devise', '~>1.4.6'
 
 gem "nifty-generators", :group => :development
 
