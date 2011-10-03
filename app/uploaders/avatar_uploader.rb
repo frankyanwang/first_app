@@ -13,8 +13,8 @@ class AvatarUploader < ImageUploader
     process :resize_to_fill => [50, 50]
   end  
 
-  version :profile do
-    process :resize_to_fill => [300, 300]
-  end  
+  # version :profile do
+  #   process :resize_to_fill => [300, 300]
+  # end  
 
 end

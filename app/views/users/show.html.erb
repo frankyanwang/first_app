@@ -15,7 +15,7 @@
 </p>
 <p>
   <strong>Avatar:</strong><br />
-  <%= image_tag @user.avatar_url(:profile).to_s%>
+  <%= image_tag @user.avatar_url.to_s%>
 </p>
 
 <% if @is_current_user %>
