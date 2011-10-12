@@ -7,7 +7,10 @@ class Post < ActiveRecord::Base
   
   has_many :inverse_proposals, :class_name => "Proposal", :foreign_key => "trade_post_id"
   has_many :origin_posts, :through => :inverse_proposals, :source => :post
-    
+
+  has_many :likeships
+  has_many :users, :through => :likeships
+
   attr_accessible :name, :content, :trade, :cash, :user_id, :status_type
   
   attr_accessor :status_type

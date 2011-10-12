@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :proposals
   
+  has_many :likeships
+  has_many :liked_posts, :through => :likeships, :source => :post
+  
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
   # Include default devise modules. Others available are:
