@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916063204) do
+ActiveRecord::Schema.define(:version => 20111012125133) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20110916063204) do
   end
 
   add_index "followships", ["user_id", "follower_id"], :name => "index_followers_on_user_id_and_follower_id", :unique => true
+
+  create_table "likeships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "post_images", :force => true do |t|
     t.string   "image"

@@ -42,3 +42,10 @@
     <li><%= link_to user.username, profile_path(:id => user) %></li>
   <% end %>
 </ul>
+
+<h3>Posts liked:</h3>
+<ul>
+  <% for post in @user.liked_posts %>
+    <li><%= link_to post.name, profile_path(:id => post) %></li>
+  <% end %>
+</ul>
