@@ -5,7 +5,8 @@ class LikeshipsController < ApplicationController
     @likeship = current_user.likeships.build(:post_id => params[:post_id])
     if @likeship.save
       flash[:notice] = "You start like '#{@likeship.post.name}'."
-      redirect_to root_url
+      #temporary redirect to itself. Need to make it an ajax or REST API call.
+      redirect_to request.referer
     else
       flash[:error] = "unable to like."
       redirect_to root_url
@@ -15,6 +16,6 @@ class LikeshipsController < ApplicationController
   def destroy
     @likeship = current_user.likeships.find(params[:id])
     @likeship.destroy
-    redirect_to root_url, :notice => "You stop like '#{@likeship.post.name}' anymore."
+    redirect_to request.referer, :notice => "You stop like '#{@likeship.post.name}' anymore."
   end
 end

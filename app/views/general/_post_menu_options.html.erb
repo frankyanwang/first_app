@@ -1,0 +1,21 @@
+<p>
+  <% if post.user == current_user %>	
+  	<%= link_to "Edit", edit_post_path(post) %>
+    <%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %>
+  <% else %>
+  <a href="void:javascript" class="open_dialog" post_id = "<%= post.id%>">Propose</a>
+  <% end %>
+  <% if likers.include? current_user %>
+    <%= link_to "Unlike", likeship_path(:id => post.likeships.where(:user_id => current_user).first.id), :method => :delete %>
+  <% else %>
+    <%= link_to "Like", likeships_path(:post_id => post.id), :method => :post %>
+  <% end %>  
+</p>
+<p>
+  <% if !likers.blank? %>
+    <% for user in likers %>
+  	<%= link_to user.username, profile_path(:id => user) %>
+    <% end %>
+  like this!
+  <% end %>
+</p>
