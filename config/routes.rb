@@ -1,4 +1,7 @@
 FirstApp::Application.routes.draw do
+
+  resources :comments, :only => [:create, :destroy]
+  
   resources :proposals do
     member do
       post 'accept'

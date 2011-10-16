@@ -11,6 +11,10 @@ class Post < ActiveRecord::Base
   has_many :likeships
   # only need this association when we query all users like one post directly e.g post.likers.
   has_many :likers, :through => :likeships, :source => :user
+  
+  has_many :comments
+  #TODO optional
+  has_many :commentors, :through => :comments, :source => :user
 
   attr_accessible :name, :content, :trade, :cash, :user_id, :status_type
   

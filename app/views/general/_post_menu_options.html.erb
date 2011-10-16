@@ -9,7 +9,7 @@
     <%= link_to "Unlike", likeship_path(:id => post.likeships.where(:user_id => current_user).first.id), :method => :delete %>
   <% else %>
     <%= link_to "Like", likeships_path(:post_id => post.id), :method => :post %>
-  <% end %>  
+  <% end %>
 </p>
 <p>
   <% if !likers.blank? %>
@@ -19,3 +19,30 @@
   like this!
   <% end %>
 </p>
+
+<% comments_list = post.comments %>
+<% if !comments_list.blank? %>
+  <% for comment in comments_list %>
+    <p>
+	  <%= image_tag comment.user.avatar_url(:thumbnail).to_s, :size=>"25x25", :class=>"thumbnail"%> 
+	  <%= link_to comment.user.username, profile_path(:id => comment.user.id) %>: 
+      <%= comment.description %><br />
+      <span style="color:red;margin-left:30px"><%= time_ago_in_words comment.created_at %> ago</span>
+	  <% if comment.user == current_user %>
+        <%= link_to "X", comment_path(:id => comment.id), :method => :delete %>
+	  <% end %>
+	  <br />
+    </p>
+  <% end %>
+<% end %>
+
+<div class="comment_form">
+<%= form_for :comment, :url => comments_path do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.text_field :description, :col => 2, :rows => 10%>
+	<%= f.hidden_field :post_id, :value=>post.id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+</div>

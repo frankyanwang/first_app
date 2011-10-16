@@ -37,6 +37,8 @@ class PostsController < ApplicationController
     #@post = current_user.posts.find(params[:id])
     @post = Post.find(params[:id])
     @images = @post.post_images
+    #TODO eager loading?
+    @comments = @post.comments
   end
 
   def new
