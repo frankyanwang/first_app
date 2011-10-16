@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
   
   has_many :posts
   has_many :proposals
-  
+
   #TODO this might not needed. we don't see facebook list all of your liked posts. just way too many and not that valuable.
   #but we can do this kind of relationship for favorite/bookmarks 
   has_many :likeships
   has_many :liked_posts, :through => :likeships, :source => :post
-  
+
+  has_many :comments
+    
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
   # Include default devise modules. Others available are:
