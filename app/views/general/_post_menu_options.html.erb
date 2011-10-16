@@ -20,7 +20,7 @@
   <% end %>
 </p>
 
-<% comments_list = post.comments %>
+<% comments_list = post.comments.order("created_at ASC") %>
 <% if !comments_list.blank? %>
   <% for comment in comments_list %>
 	<div>
