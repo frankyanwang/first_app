@@ -3,13 +3,19 @@
   	<%= link_to "Edit", edit_post_path(post) %>
     <%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %>
   <% else %>
-  <a href="void:javascript" class="open_dialog" post_id = "<%= post.id%>">Propose</a>
+	  <a href="void:javascript" class="open_dialog" post_id = "<%= post.id%>">Propose</a>
+	  <% if favorite.nil? %>
+		<%= link_to "Favorite", favorites_path(:post_id => post.id), :method => :post %>
+	  <% else %>
+    	<%= link_to "Unfavorite", favorite_path(:id => favorite.id), :method => :delete %>
+	  <% end %>
   <% end %>
   <% if likers.include? current_user %>
     <%= link_to "Unlike", likeship_path(:id => post.likeships.where(:user_id => current_user).first.id), :method => :delete %>
   <% else %>
     <%= link_to "Like", likeships_path(:post_id => post.id), :method => :post %>
   <% end %>
+
 </p>
 <p>
   <% if !likers.blank? %>
