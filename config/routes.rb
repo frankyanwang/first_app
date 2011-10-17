@@ -2,6 +2,12 @@ FirstApp::Application.routes.draw do
 
   resources :comments, :only => [:create, :destroy]
   
+  resources :favorites, :only => [:create, :destroy] do
+    collection do
+      get 'my_favorites'
+    end
+  end
+  
   resources :proposals do
     member do
       post 'accept'

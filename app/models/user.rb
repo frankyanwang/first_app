@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :liked_posts, :through => :likeships, :source => :post
 
   has_many :comments
+  
+  has_many :favorites
+  has_many :favorited_posts, :through => :favorites, :source => :post
     
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
