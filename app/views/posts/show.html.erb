@@ -35,5 +35,5 @@
   <% end %>
 </p>
 
-<%= render :partial => "general/post_menu_options", :locals => { :post => @post, :likers => @post.likers }%>
+<%= render :partial => "general/post_menu_options", :locals => { :post => @post, :likers => @post.likers, :favorite => get_my_favorite_post(@post) }%>
 

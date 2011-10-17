@@ -15,6 +15,11 @@ class Post < ActiveRecord::Base
   has_many :comments
   #TODO optional
   has_many :commentors, :through => :comments, :source => :user
+  
+  has_many :favorites
+  #TODO optional
+  has_many :favorited_users, :through => :favorites, :source => :user
+  
 
   attr_accessible :name, :content, :trade, :cash, :user_id, :status_type
   

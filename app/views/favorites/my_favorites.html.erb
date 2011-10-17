@@ -1,7 +1,7 @@
-<% title "Timeline Feed Post" %>
+<% title "Favorites" %>
 
-<div id="time_line_post">
-<% for post in @feed_posts %>
+<div id="favorites">
+<% for post in @my_posts %>
 
 <p style = "color:red">
   <%= image_tag post.user.avatar_url(:thumbnail).to_s, :size => "30x30"%> <span style="margin:0px 10px;font-size:15px;color:blue"><%= link_to post.user.username, profile_path(:id => post.user.id) %></span> 
