@@ -8,3 +8,9 @@ public/uploads/
 app/assets/.DS_Store
 app/views/.DS_Store
 public/carrierwave_cache/
+app/assets/javascripts/.DS_Store
+app/assets/stylesheets/.DS_Store
+app/controllers/.DS_Store
+app/helpers/.DS_Store
+test/functional/.DS_Store
+test/unit/helpers/.DS_Store

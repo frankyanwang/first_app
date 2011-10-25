@@ -18,13 +18,15 @@ class User < ActiveRecord::Base
   
   has_many :favorites
   has_many :favorited_posts, :through => :favorites, :source => :post
+  
+  after_create :update_authentication_token
     
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
          
   validates_uniqueness_of :username         
 
@@ -36,6 +38,14 @@ class User < ActiveRecord::Base
   # warn: dont want to set accessible for attr_accessible :role
   
   attr_accessor :login
+  
+  # after create user object, update auth_token for this user.
+  def update_authentication_token
+    puts " ---------before create user #{self.authentication_token}"
+    if !self.authentication_token
+      self.reset_authentication_token!
+    end
+  end
   
   def is_role? role
     User::ROLE_TYPE[self.role] == role.to_sym.downcase

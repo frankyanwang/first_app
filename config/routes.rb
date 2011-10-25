@@ -30,6 +30,9 @@ FirstApp::Application.routes.draw do
   resources :followships, :only => [:create, :destroy]
   
   resources :likeships, :only => [:create, :destroy]
+  
+  # TODO remove later. No regular user should need access this.
+  resources :token_authentications, :only => [:create, :destroy]
 
   devise_for :users, :path_names => {:sign_up => "register"}
   match "profile" => "users#show"
