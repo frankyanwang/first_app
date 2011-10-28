@@ -27,8 +27,20 @@ class UsersController < AuthorizedController
 
   def show
     @user = User.find(params[:id])
-    @is_current_user = @user == current_user
-    @liked_posts = @user.liked_posts
+    respond_to do |format|
+      format.html
+      format.json do
+        user_profile = {:id => @user.id,
+                        :username => @user.username,
+                        :profile_picture => IMAGE_STORAGE_ROOT_URL + @user.avatar_url(:thumbnail).to_s,
+                        :counts => {:post => @user.posts.count,
+                                    :follows => @user.followers.count,
+                                    :followed_by => @user.followings.count
+                                   }
+                       }
+        render :json => {:data => user_profile}.to_json, :status => :ok
+      end
+    end    
   end
   
 end

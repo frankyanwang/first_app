@@ -18,7 +18,7 @@
   <%= image_tag @user.avatar_url.to_s%>
 </p>
 
-<% if @is_current_user %>
+<% if is_current_user? %>
 <p>
   <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 </p>
@@ -29,7 +29,7 @@
   <% for followship in @user.followships.includes(:follower) %>
     <li>
       	<%= link_to followship.follower.username, profile_path(:id => followship.follower) %>
-		<% if @is_current_user %>
+		<% if is_current_user? %>
       		(<%= link_to "unfollow", followship, :method => :delete %>)
 		<% end %>
     </li>
@@ -40,12 +40,5 @@
 <ul>
   <% for user in @user.followings %>
     <li><%= link_to user.username, profile_path(:id => user) %></li>
-  <% end %>
-</ul>
-
-<h3>Posts liked:</h3>
-<ul>
-  <% for post in @user.liked_posts %>
-    <li><%= link_to post.name, profile_path(:id => post) %></li>
   <% end %>
 </ul>

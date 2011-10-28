@@ -57,4 +57,7 @@ FirstApp::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Custom defined Constant variables
+  IMAGE_STORAGE_ROOT_URL = "http://playswapguru.s3.amazonaws.com"
 end

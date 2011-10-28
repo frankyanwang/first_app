@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :favorited_posts, :through => :favorites, :source => :post
   
+  before_save :downcase_login
   after_create :update_authentication_token
     
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
@@ -28,7 +29,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
          
-  validates_uniqueness_of :username         
+  validates_uniqueness_of :username, :case_sensitive => false
+  validates_uniqueness_of :email, :case_sensitive => false         
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :phone, :password, :password_confirmation, :remember_me, :login, :id
@@ -39,11 +41,17 @@ class User < ActiveRecord::Base
   
   attr_accessor :login
   
+  def downcase_login
+    self.email.downcase!
+    self.username.downcase!
+  end
+  
   # after create user object, update auth_token for this user.
   def update_authentication_token
-    puts " ---------before create user #{self.authentication_token}"
     if !self.authentication_token
+      logger.info "auth_token: #{self.authentication_token}"
       self.reset_authentication_token!
+      logger.info "auth_token: #{self.authentication_token}"
     end
   end
   

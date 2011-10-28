@@ -30,4 +30,7 @@ FirstApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Custom defined Constant variables
+  IMAGE_STORAGE_ROOT_URL = "http://localhost:3000"
 end
