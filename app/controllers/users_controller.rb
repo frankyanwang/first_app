@@ -1,6 +1,7 @@
 class UsersController < AuthorizedController
   #before_filter :authenticate_user!
 
+  respond_to :html, :json, :xml
   #add pagination, it could be expensive to query for user with following condition.
   def index
     #all of the users except current user.
@@ -27,20 +28,6 @@ class UsersController < AuthorizedController
 
   def show
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json do
-        user_profile = {:id => @user.id,
-                        :username => @user.username,
-                        :profile_picture => IMAGE_STORAGE_ROOT_URL + @user.avatar_url(:thumbnail).to_s,
-                        :counts => {:post => @user.posts.count,
-                                    :follows => @user.followers.count,
-                                    :followed_by => @user.followings.count
-                                   }
-                       }
-        render :json => {:data => user_profile}.to_json, :status => :ok
-      end
-    end    
   end
   
 end
