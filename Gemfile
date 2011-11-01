@@ -41,3 +41,5 @@ gem 'rmagick' #we should use latest one, but this one should work '2.13.1'
 gem 'carrierwave', '>= 0.5.3'
 
 gem 'fog', '0.5.3'
+
+gem 'rabl'
