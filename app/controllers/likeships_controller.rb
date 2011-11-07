@@ -1,6 +1,8 @@
 class LikeshipsController < ApplicationController
   before_filter :authenticate_user!
   
+  respond_to :html, :json, :xml
+  
   def create
     @likeship = current_user.likeships.build(:post_id => params[:post_id])
     if @likeship.save
@@ -18,4 +20,10 @@ class LikeshipsController < ApplicationController
     @likeship.destroy
     redirect_to request.referer, :notice => "You stop like '#{@likeship.post.name}' anymore."
   end
+  
+  def index
+    post = Post.find(params[:post_id])
+    @likers = post.likers
+  end
+
 end
