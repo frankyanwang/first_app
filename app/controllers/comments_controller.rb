@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  
+  respond_to :html, :json, :xml
+  
   def create
     @comment = current_user.comments.build(params[:comment])
     if @comment.save
@@ -17,4 +20,9 @@ class CommentsController < ApplicationController
     redirect_to request.referer  
   end
 
+  def index
+    post = Post.find(params[:post_id])
+    @comments = post.comments
+    @commentors = post.commentors
+  end
 end

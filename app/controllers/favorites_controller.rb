@@ -1,6 +1,8 @@
 class FavoritesController < ApplicationController
   before_filter :authenticate_user!
   
+  respond_to :html, :json, :xml
+  
   def create
     @favorite = current_user.favorites.build(:post_id => params[:post_id])
     if @favorite.save
@@ -21,6 +23,11 @@ class FavoritesController < ApplicationController
   
   def my_favorites
     @my_posts = current_user.favorited_posts.order("favorites.created_at DESC")
+  end
+  
+  def index
+    post = Post.find(params[:post_id])    
+    @favorites = post.favorited_users
   end
 
 end
