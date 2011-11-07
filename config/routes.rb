@@ -23,6 +23,12 @@ FirstApp::Application.routes.draw do
     collection do
       get 'my_posts'
     end
+    #/posts/:id/likeships.json
+    resources :likeships, :only => [:index]
+    #/posts/:id/comments.json
+    resources :comments, :only => [:index]
+    #/posts/:id/favorites.json
+    resources :favorites, :only => [:index]
   end
   
   match "feed_timeline" => "posts#feed_posts_timeline" 

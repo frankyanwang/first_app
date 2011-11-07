@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
   
+  respond_to :html, :json, :xml
   #TODO only admin access
   def index
     @posts = Post.all
@@ -39,6 +40,8 @@ class PostsController < ApplicationController
     @images = @post.post_images
     #TODO eager loading?
     @comments = @post.comments
+    @likers = @post.likers
+    @favorites = @post.favorited_users
     
     @is_post_favorited = current_user.favorites.where(:post_id => @post).first
   end

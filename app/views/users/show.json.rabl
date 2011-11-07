@@ -1,4 +1,4 @@
-object @user
+object @user => :data
 
 attributes :id, :username
 
