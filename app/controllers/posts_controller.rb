@@ -12,11 +12,11 @@ class PostsController < ApplicationController
   def my_posts
     @posts = current_user.posts
     # @post_wanted_id = params[:post_id]
-    respond_to do |format|
+    #respond_to do |format|
       # format.html { render "my_posts"}
-      format.html { render :partial => "my_posts"}
-      format.json { render :json => @posts }
-    end    
+     # format.html { render :partial => "my_posts"}
+      #format.json { render :json => @posts }
+    #end    
     # render :json => @posts
   end
     
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
                       .limit(params["limit"] ? params["limit"].to_i : 2) #default 20
                       .offset(params["offset"] ? params["offset"].to_i : 0) #default 0 offset, meaning get latest.
     
-    render :feed_posts_timeline, :layout => params[:layout] == "false" ? false : true
+   # render :feed_posts_timeline, :layout => params[:layout] == "false" ? false : true
     # render :xml => @feed_posts
   end
 

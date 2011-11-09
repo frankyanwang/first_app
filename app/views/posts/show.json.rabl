@@ -1,6 +1,6 @@
 object @post => :data
 
-attributes :name => :title, :content => :description, :trade => :trade_for, :cash => :cash_price, :status_type => :status
+attributes :id => :post_id, :name => :title, :content => :description, :trade => :trade_for, :cash => :cash_price, :status_type => :status
 
 node :owner do |post|
 	post.user.username
