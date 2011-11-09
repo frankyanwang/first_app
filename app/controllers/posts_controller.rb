@@ -1,23 +1,17 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
   
-  respond_to :html, :json, :xml
   #TODO only admin access
   def index
     @posts = Post.all
   end
   
-  # GET /my_posts
-  # GET /my_posts.json  
   def my_posts
     @posts = current_user.posts
-    # @post_wanted_id = params[:post_id]
-    #respond_to do |format|
-      # format.html { render "my_posts"}
-     # format.html { render :partial => "my_posts"}
-      #format.json { render :json => @posts }
-    #end    
-    # render :json => @posts
+    respond_to do |format|
+      format.html { render "my_posts", :layout => false}
+      format.json
+    end    
   end
     
   def feed_posts_timeline
@@ -30,8 +24,10 @@ class PostsController < ApplicationController
                       .limit(params["limit"] ? params["limit"].to_i : 2) #default 20
                       .offset(params["offset"] ? params["offset"].to_i : 0) #default 0 offset, meaning get latest.
     
-   # render :feed_posts_timeline, :layout => params[:layout] == "false" ? false : true
-    # render :xml => @feed_posts
+    respond_to do |format|
+      format.html { render :feed_posts_timeline, :layout => params[:layout] == "false" ? false : true}
+      format.json
+    end    
   end
 
   def show

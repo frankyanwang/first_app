@@ -1,7 +1,6 @@
 class UsersController < AuthorizedController
   #before_filter :authenticate_user!
 
-  respond_to :html, :json, :xml
   #add pagination, it could be expensive to query for user with following condition.
   def index
     #all of the users except current user.

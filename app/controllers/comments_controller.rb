@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
   
-  respond_to :html, :json, :xml
-  
   def create
     @comment = current_user.comments.build(params[:comment])
     if @comment.save
