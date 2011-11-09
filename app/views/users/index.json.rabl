@@ -1,3 +1,4 @@
-collection @users
+collection @users => :data
 
-extends "users/show"
+extends "users/user_attributes"
+
