@@ -1,0 +1,27 @@
+<% title "My available Posts" %>
+<div id = "my_posts">
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Trade for</th>
+    <th>or Price</th>
+    <th>Owner</th>
+  </tr>
+  <% for post in @posts %>
+    <tr>
+      <td><%= post.name %></td>
+      <td><%= post.content %></td>
+      <td><%= post.trade %></td>
+      <td><%= post.cash %></td>
+	  <td><a href="void:javascript" class="propose" trade_post_id="<%= post.id %>">Propose</a></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Post", new_post_path %></p>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+</script>

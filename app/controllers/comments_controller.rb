@@ -23,6 +23,6 @@ class CommentsController < ApplicationController
   def index
     post = Post.find(params[:post_id])
     @comments = post.comments
-    @commentors = post.commentors
+    #@commentors = post.commentors
   end
 end
