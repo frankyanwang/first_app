@@ -1,5 +1,7 @@
 FirstApp::Application.routes.draw do
 
+  resources :authentications, :only => [:index, :create, :detroy]
+
   resources :comments, :only => [:create, :destroy]
   
   resources :favorites, :only => [:create, :destroy] do
@@ -31,7 +33,8 @@ FirstApp::Application.routes.draw do
     resources :favorites, :only => [:index]
   end
   
-  match "feed_timeline" => "posts#feed_posts_timeline" 
+  match "feed_timeline" => "posts#feed_posts_timeline"
+  match "auth/:provider/callback" => "authentications#create" 
 
   resources :followships, :only => [:create, :destroy]
   

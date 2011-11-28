@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController  
-  
+
   def create
     build_resource
-
+    
     if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
@@ -24,8 +24,20 @@ class RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords(resource)
       respond_with_navigational(resource) { render_with_scope :new }
-    end    
+    end
     
+    session[:omniauth] = nil unless @user.new_record?
+      
+  end
+  
+  private
+  
+  def build_resource(*args)
+    super
+    if session[:omniauth]
+      @user.apply_omniauth(session[:omniauth])
+      @user.valid?
+    end
   end
      
 end

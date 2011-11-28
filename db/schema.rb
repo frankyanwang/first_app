@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026054828) do
+ActiveRecord::Schema.define(:version => 20111115094531) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.string   "description"
@@ -57,6 +65,15 @@ ActiveRecord::Schema.define(:version => 20111026054828) do
   end
 
   add_index "likeships", ["post_id", "user_id"], :name => "index_like_on_post_id_user_id", :unique => true
+
+  create_table "locations", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longtitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "post_images", :force => true do |t|
     t.string   "image"

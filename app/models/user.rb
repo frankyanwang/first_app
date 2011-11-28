@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   
   before_save :downcase_login
   after_create :update_authentication_token
+  
+  has_many :authentications
     
   ROLE_TYPE = { 1 => :admin, 0 => :regular }
   
@@ -63,6 +65,14 @@ class User < ActiveRecord::Base
   # nil means this user is not following.
   attr_accessor :being_followed_user_associate_followship_id
 
+  def apply_omniauth(omniauth)
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
+  end
+  
   protected
   
   #override for login.
@@ -111,6 +121,6 @@ class User < ActiveRecord::Base
 
   def self.find_record(login)
     where(["username = :value OR email = :value", { :value => login }]).first
-  end    
+  end   
   
 end

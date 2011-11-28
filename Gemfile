@@ -43,3 +43,6 @@ gem 'carrierwave', '>= 0.5.3'
 gem 'fog', '0.5.3'
 
 gem 'rabl'
+
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'

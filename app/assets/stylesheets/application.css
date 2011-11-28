@@ -146,3 +146,22 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth_provider:hover {
+  color: #FFF;
+  background-color: #777;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}

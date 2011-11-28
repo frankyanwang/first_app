@@ -9,7 +9,9 @@
   <div><%= f.label :username %><br />
   <%= f.text_field :username %></div>
 
-  <div><%= f.label :password %><br />
+<% if @user.password_required? %>
+  
+<div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %><br />
@@ -19,7 +21,7 @@
 
   <div><%= f.label :remote_avatar_url, "or avatar url" %><br />
   	   <%= f.text_field :remote_avatar_url %></div>
-
+<% end %>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
