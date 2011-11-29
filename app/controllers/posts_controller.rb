@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   
   #TODO only admin access
   def index
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     @likers = @post.likers
     @favorites = @post.favorited_users
     
-    @is_post_favorited = current_user.favorites.where(:post_id => @post).first
+    #@is_post_favorited = current_user.favorites.where(:post_id => @post).first
   end
 
   def new

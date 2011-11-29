@@ -8,7 +8,7 @@
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
-
+<% if @user.password_required? %>
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password %></div>
 
@@ -17,7 +17,7 @@
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
-
+<% end %>
   <div><%= f.label :avatar%><br /><%= f.file_field :avatar %></div>
 
   <div><%= f.label :remote_avatar_url, "or avatar url" %><br />
