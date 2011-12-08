@@ -1,6 +1,8 @@
 <% title "Timeline Feed Post" %>
 
 <div id="time_line_post">
+<div id="fb-root"></div>
+<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 <% for post in @feed_posts %>
 
 <p style = "color:red">
@@ -9,7 +11,7 @@
 </p>
 <p>
   <strong>Title:</strong>
-  <%= post.name %>
+  <%= link_to post.name, post_path(:id => post.id) %>
 </p>
 <p>
   <strong>Description:</strong>
@@ -38,7 +40,10 @@
     
   <% end %>
 </p>
-
+<p>
+	<div class="fb-like" data-send="false" data-href="<%= root_url.sub(/\/[^\/]*$/, '')+post_path(:id => post.id) %>" data-layout="button_count" data-width="85" data-show-faces="false"></div>
+	<div><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= root_url.sub(/\/[^\/]*$/, '')+post_path(:id => post.id) %>" data-count="horizontal">Tweet</a></div>
+</p>
 <%= render :partial => "general/post_menu_options", :locals => { :post => post, :likers => post.likers, :favorite => get_my_favorite_post(post) }%>
 
 <hr />
